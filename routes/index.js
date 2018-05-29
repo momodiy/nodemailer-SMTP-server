@@ -13,7 +13,7 @@ var mailTransport = nodemailer.createTransport({
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('index', {title: '邮件服务器首页', content: '您的项目启动成功！'});
+    res.render('submit/index', {title: '邮件服务器首页', content: '您的项目启动成功！'});
 });
 
 
