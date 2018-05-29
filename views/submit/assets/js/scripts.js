@@ -24,8 +24,8 @@ jQuery(document).ready(function() {
 	    $('.contact-form form input[type="text"], .contact-form form textarea').removeClass('input-error');
 	    var postdata = $('.contact-form form').serialize();
 	    $.ajax({
-	        type: 'POST',
-	        url: 'assets/contact.php',
+	        // type: 'POST',
+	        url: 'send',
 	        data: postdata,
 	        dataType: 'json',
 	        success: function(json) {

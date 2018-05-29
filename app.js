@@ -12,7 +12,7 @@ let app = express();
 // view engine setup
 app.engine('html', ejs.__express);
 app.set('view engine', 'html');
-
+app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
