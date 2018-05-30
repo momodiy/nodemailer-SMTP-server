@@ -1,21 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');   //It's required,can not be deleted
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-    res.render('submit/index', {title: '邮件服务器首页', content: '您的项目启动成功！'});
+router.get('/', (req, res, next) => {
+    res.render('submit/index');
 });
 
 
-router.get('/send', function (req, res, next) {
-    if (!req.query.email || !req.query.subject || !req.query.message) return;
+router.post('/send', (req, res, next) => {
+    if (!req.body.email || !req.body.subject || !req.body.message) return;
     let options = {
         from: 'stevenrobot@yeah.net',
-        to: req.query.email,
-        subject: req.query.subject,
+        to: req.body.email,
+        subject: req.body.subject,
         // 当存在html，text会被替换且不显示
-        text: req.query.message, //title
+        text: req.body.message,
         // html: '<h1>你好，这是一封来自Steven Lee的邮件！仅供测试</h1><p></p>', //content
         attachments: []//附件
     };

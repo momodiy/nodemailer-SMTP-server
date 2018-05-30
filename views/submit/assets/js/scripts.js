@@ -1,53 +1,55 @@
-
-jQuery(document).ready(function() {
-	
-    /*
-        Fullscreen background
-    */
+jQuery(document).ready(() => {
+    let isReSub = false;
     $.backstretch("assets/img/backgrounds/1.jpg");
-    
-    $('#top-navbar-1').on('shown.bs.collapse', function(){
-    	$.backstretch("resize");
+
+    $('#top-navbar-1').on('shown.bs.collapse', () => {
+        $.backstretch("resize");
     });
-    $('#top-navbar-1').on('hidden.bs.collapse', function(){
-    	$.backstretch("resize");
+    $('#top-navbar-1').on('hidden.bs.collapse', () => {
+        $.backstretch("resize");
     });
-    
-    /*
-	    Contact form
-	*/
-	$('.contact-form form input[type="text"], .contact-form form textarea').on('focus', function() {
-		$('.contact-form form input[type="text"], .contact-form form textarea').removeClass('input-error');
-	});
-	$('.contact-form form').submit(function(e) {
-		e.preventDefault();
-	    $('.contact-form form input[type="text"], .contact-form form textarea').removeClass('input-error');
-	    var postdata = $('.contact-form form').serialize();
-	    $.ajax({
-	        // type: 'POST',
-	        url: 'send',
-	        data: postdata,
-	        dataType: 'json',
-	        success: function(json) {
-	            if(json.emailMessage != '') {
-	                $('.contact-form form .contact-email').addClass('input-error');
-	            }
-	            if(json.subjectMessage != '') {
-	                $('.contact-form form .contact-subject').addClass('input-error');
-	            }
-	            if(json.messageMessage != '') {
-	                $('.contact-form form textarea').addClass('input-error');
-	            }
-	            if(json.emailMessage == '' && json.subjectMessage == '' && json.messageMessage == '') {
-	                $('.contact-form form').fadeOut('fast', function() {
-	                    $('.contact-form').append('<p>Thanks for contacting us! We will get back to you very soon.</p>');
-	                    // reload background
-	    				$.backstretch("resize");
-	                });
-	            }
-	        }
-	    });
-	});
-    
-    
+
+    $('.contact-form form input[type="text"], .contact-form form textarea').on('focus', () => {
+        $('.contact-form form input[type="text"], .contact-form form textarea').removeClass('input-error');
+    });
+
+    $('.contact-form form').submit(e => {
+        e.preventDefault();
+        if (isReSub) return;
+        isReSub = true;
+        $('.contact-form form input[type="text"], .contact-form form textarea').removeClass('input-error');
+        let formData = $('.contact-form form').serialize();
+        $.ajax({
+            type: 'POST',
+            url: 'send',
+            data: formData,
+            dataType: 'json',
+            // beforeSend: sectTips.beforeSend(cssName),
+            complete: () => {
+                isReSub = false;
+            },
+            success: (res, err) => {
+                console.log(err);
+                if (res.type === 'success' && res.state === 200 && res.msg !== '') {
+                    $('.form-top-right>.fa-envelope').css({'color': '#5b9e11'});
+                    $('.contact-form form').fadeOut('fast', () => {
+                        $('.form-top-left>h3').html(`<p>Congratulations</p>`);
+                        $('.form-top-left>p').html(`邮件发送成功`);
+                        $('.contact-form').append(`<p>${res.msg}请在您的邮箱中查看<br>5秒后将自动跳转到首页...</p>`);
+                        setInterval(() => location.reload(), 5000);
+                    });
+                } else {
+                    errorHandle(res);
+                }
+            }, error: err => errorHandle(err)
+        })
+
+    });
+
+    const errorHandle = err => {
+        console.log(err);
+        $('.contact-form>div').remove();
+        $('.contact-form').append('<div><h3 style="color: #fe0001;">错误信息</h3><p>抱歉💔，邮件发送出错了，请在控制台查看详细信息。</p></div>');
+    }
+
 });
