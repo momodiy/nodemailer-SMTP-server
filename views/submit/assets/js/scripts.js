@@ -1,3 +1,28 @@
+class sectTip {
+    beforeSend(cssName) {
+        $(cssName).block({
+            message: '<div class="semibold"><i class="fa fa-spinner" aria-hidden="true"></i>&nbsp; 加载中 ...</div>',
+            overlayCSS: {
+                backgroundColor: '#FFF',
+                opacity: 0.8,
+                cursor: 'wait'
+            },
+            css: {
+                border: 0,
+                padding: 0,
+                width: '100%',
+                backgroundColor: 'transparent'
+            }
+        });
+    };
+
+    complete(cssName) {
+        $(cssName).unblock();
+    }
+}
+
+let sectTips = new sectTip();
+
 jQuery(document).ready(() => {
     let isReSub = false;
     $.backstretch("assets/img/backgrounds/1.jpg");
@@ -24,12 +49,12 @@ jQuery(document).ready(() => {
             url: 'send',
             data: formData,
             dataType: 'json',
-            // beforeSend: sectTips.beforeSend(cssName),
+            beforeSend: sectTips.beforeSend('.form-box'),
             complete: () => {
+                sectTips.complete('.form-box');
                 isReSub = false;
             },
-            success: (res, err) => {
-                console.log(err);
+            success: res => {
                 if (res.type === 'success' && res.state === 200 && res.msg !== '') {
                     $('.form-top-right>.fa-envelope').css({'color': '#5b9e11'});
                     $('.contact-form form').fadeOut('fast', () => {
