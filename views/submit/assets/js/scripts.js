@@ -1,17 +1,16 @@
 class sectTip {
     beforeSend(cssName) {
         $(cssName).block({
-            message: '<div class="semibold"><i class="fa fa-spinner" aria-hidden="true"></i>&nbsp; 加载中 ...</div>',
+            message: '<div class="semibold"><img style="height:479px;" src="../../assets/img/loading.gif"></div>',
             overlayCSS: {
-                backgroundColor: '#FFF',
-                opacity: 0.8,
+                backgroundColor: '#ccc',
+                opacity: 0,
                 cursor: 'wait'
             },
             css: {
                 border: 0,
                 padding: 0,
-                width: '100%',
-                backgroundColor: 'transparent'
+                width: '100%'
             }
         });
     };
@@ -68,7 +67,6 @@ jQuery(document).ready(() => {
                 }
             }, error: err => errorHandle(err)
         })
-
     });
 
     const errorHandle = err => {
@@ -76,5 +74,4 @@ jQuery(document).ready(() => {
         $('.contact-form>div').remove();
         $('.contact-form').append('<div><h3 style="color: #fe0001;">错误信息</h3><p>抱歉💔，邮件发送出错了，请在控制台查看详细信息。</p></div>');
     }
-
 });

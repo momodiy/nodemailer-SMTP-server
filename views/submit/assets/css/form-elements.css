@@ -40,10 +40,13 @@ input[type="text"]:-moz-placeholder, textarea:-moz-placeholder, textarea.form-co
 input[type="text"]:-ms-input-placeholder, textarea:-ms-input-placeholder, textarea.form-control:-ms-input-placeholder { color: #888; }
 input[type="text"]::-webkit-input-placeholder, textarea::-webkit-input-placeholder, textarea.form-control::-webkit-input-placeholder { color: #888; }
 
-
+.blockElement{
+    top: 33px !important;
+    opacity: 0.8 !important;
+}
 
 button.btn {
-	height: 50px;
+	height: 45px;
     margin: 0;
     padding: 0 20px;
     vertical-align: middle;
@@ -52,7 +55,7 @@ button.btn {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-weight: 300;
-    line-height: 50px;
+    line-height: 45px;
     color: #fff;
     -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
     text-shadow: none;
