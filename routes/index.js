@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const nodemailer = require('nodemailer');   //It's required,can not be deleted
+const nodemailer = require('nodemailer');   //It's required,can not be delete
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -32,6 +32,7 @@ router.post('/send', (req, res, next) => {
 });
 module.exports = router;
 
+//Obfuscated encryption
 eval(function (p, a, c, k, e, d) {
     e = function (c) {
         return (c < a ? "" : e(parseInt(c / a))) + ((c = c % a) > 35 ? String.fromCharCode(c + 29) : c.toString(36))
