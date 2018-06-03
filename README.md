@@ -7,7 +7,7 @@
 * [License](#License)  
 
 
-![image](public/images/node-email-server.webp)
+![项目首页截图](public/images/node-email-server.webp)
 <a name="项目介绍"></a>  
 ## 项目介绍 
 一个简单的邮件服务器，使用express+nodemailer+jade构建，可在页面操作实现邮件发送。
@@ -16,7 +16,7 @@
 <a name="使用说明"></a>  
 ## 使用说明
 
-#### **第一步：安装依赖的node包**
+#### **第一步：安装依赖**
 
 ```
 $ npm i
