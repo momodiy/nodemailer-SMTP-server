@@ -1,14 +1,12 @@
 const createError = require('http-errors');
 const express = require('express');
-const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const ejs = require('ejs');
 const child_process = require('child_process');
-let url = 'http://localhost:8888';
+let url = 'http://localhost:8888', cmd;
 
 let indexRouter = require('./routes/index');
-let usersRouter = require('./routes/users');
 
 let app = express();
 // view engine setup
@@ -26,12 +24,11 @@ app.use(express.static('views/submit'));
 
 //配置可用路由
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 // catch 404 and forward to error handler
 app.use((req, res, next) => next(createError(404)));
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -42,16 +39,14 @@ app.use(function (err, req, res, next) {
 });
 
 
-    if (process.platform === 'wind32') {
-        cmd = 'start "%ProgramFiles%\Internet Explorer\iexplore.exe"';
-    } else if (process.platform === 'linux') {
-        cmd = 'xdg-open';
-    } else if (process.platform === 'darwin') {
-        cmd = 'open';
-    }
-    child_process.exec(`${cmd} "${url}"`);
-
-
+if (process.platform === 'wind32') {
+    cmd = 'start "%ProgramFiles%\Internet Explorer\iexplore.exe"';
+} else if (process.platform === 'linux') {
+    cmd = 'xdg-open';
+} else if (process.platform === 'darwin') {
+    cmd = 'open';
+}
+child_process.exec(`${cmd} "${url}"`);
 
 
 module.exports = app;
