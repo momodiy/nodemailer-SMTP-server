@@ -2,13 +2,17 @@
   "name": "express-email-server",
   "version": "1.0.0",
   "author": "Steven Lee",
-  "email":"qcstevengo@gmail.com",
+  "email": "qcstevengo@gmail.com",
   "private": true,
   "license": "MIT",
+  "main": "start.js",
   "scripts": {
-    "start": "node ./bin/start"
+    "start": "node ./bin/start",
+    "monitor": "nodemon ./bin/start",
+    "test": "nodemon"
   },
   "dependencies": {
+    "chai": "^4.1.2",
     "child_process": "^1.0.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
@@ -16,7 +20,12 @@
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
+    "mocha": "^5.2.0",
     "morgan": "~1.9.0",
-    "nodemailer": "^4.6.4"
+    "nodemailer": "^4.6.4",
+    "should": "^13.2.1"
+  },
+  "devDependencies": {
+    "supertest": "^3.1.0"
   }
 }
