@@ -14,16 +14,16 @@ router.post('/send', (req, res, next) => {
         from: 'stevenrobot@yeah.net',
         to: req.body.email,
         subject: req.body.subject,
-        // 当存在html，text会被替换且不显示
         text: req.body.message,
+        // 当存在html，text会被替换且不显示
         // html: '<h1>你好，这是一封来自Steven Lee的邮件！仅供测试</h1><p></p>', //content
-        attachments: []//附件
+        // attachments: []//附件
     };
 
 
     mailTransport.sendMail(options, function (err, msg) {
         if (err) {
-            res.render('error', {title: err});
+            res.status(500).render('error', {title: err});
         }
         else {
             res.status(200).send({state: 200, msg: "邮件已经发送至：" + msg.accepted, title: '邮件发送成功', type: "success"}).end();
