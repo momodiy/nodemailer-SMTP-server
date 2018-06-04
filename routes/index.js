@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
 router.post('/send', (req, res, next) => {
     if (!req.body.email || !req.body.subject || !req.body.message) return;
     let options = {
-        from: 'stevenrobot@yeah.net',
+        from: req.body.serverEmail || 'stevenrobot@yeah.net',
         to: req.body.email,
         subject: req.body.subject,
         text: req.body.message,
@@ -26,7 +26,7 @@ router.post('/send', (req, res, next) => {
             res.status(500).render('error', {title: err});
         }
         else {
-            res.status(200).send({state: 200, msg: "邮件已经发送至：" + msg.accepted, title: '邮件发送成功', type: "success"}).end();
+            res.status(200).send({state: 200, msg: "邮件已经发送至：" + msg.accepted, title: '邮件发送成功', type: "success",data:new Date}).end();
         }
     });
 });

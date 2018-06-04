@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node ./bin/start",
     "monitor": "nodemon ./bin/start",
-    "test": "mocha"
+    "test": "node ./bin/start | mocha"
   },
   "dependencies": {
     "chai": "^4.1.2",
