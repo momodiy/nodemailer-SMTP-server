@@ -9,7 +9,15 @@ router.get('/', (req, res, next) => {
 
 
 router.post('/send', (req, res, next) => {
-    if (!req.body.email || !req.body.subject || !req.body.message) return;
+    if (!req.body.email || !req.body.subject || !req.body.message) {
+        return res.status(500).render('Missing parameters error', {
+            title: 'Please confirm that your request data contains email、subject and message!',
+            error:{
+                status: '500',
+                stack: 'Missing parameters error'
+            }
+        });
+    }
     let options = {
         from: req.body.serverEmail || 'stevenrobot@yeah.net',
         to: req.body.email,
@@ -20,13 +28,23 @@ router.post('/send', (req, res, next) => {
         // attachments: []//附件
     };
 
-
     mailTransport.sendMail(options, function (err, msg) {
         if (err) {
-            res.status(500).render('error', {title: err});
+            console.log(err);
+            res.status(500).render('error', {
+                title: err.response, error: {
+                    status: err.responseCode,
+                    stack: err
+                }
+            });
         }
         else {
-            res.status(200).send({state: 200, msg: "邮件已经发送至：" + msg.accepted, title: '邮件发送成功', type: "success",data:new Date}).end();
+            res.status(200).send({
+                msg: "邮件已经发送至：" + msg.accepted,
+                title: '邮件发送成功',
+                type: "success",
+                data: new Date
+            }).end();
         }
     });
 });
