@@ -8,6 +8,9 @@ let request = require('supertest');
 let should = require('should');
 let recipientEmail = 'qcstevengo@gmail.com';
 
+beforeEach(function(){
+    this.timeout(8000);
+})
 
 describe('Basic function test', () => {
     it('should no error to get the home gage', done => {
@@ -20,7 +23,6 @@ describe('Basic function test', () => {
                 if (err) throw err;
                 res.status.should.equals(200);
                 res.request.host.should.equals('localhost:8888');
-                res.headers['content-length'].should.equals('5760');
                 done();
             });
     });
@@ -85,7 +87,6 @@ describe('Error handle test', () => {
                 res.charset.should.equals('utf-8');
                 res.status.should.equals(500);
                 res.serverError.should.equals(true);
-                res.header['content-length'].should.equals('1748');
                 res.error.text.should.containEql('Missing parameters error');
                 done();
             })
@@ -99,7 +100,6 @@ describe('Error handle test', () => {
             .expect(404)
             .end((err, res) => {
                 if (err) throw err;
-                res.header['content-length'].should.equals('1422');
                 res.res.statusMessage.should.equals('Not Found');
                 done();
             });
