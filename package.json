@@ -8,7 +8,7 @@
   "main": "start.js",
   "scripts": {
     "start": "node ./bin/start",
-    "monitor": "nodemon ./bin/start",
+    "monitor": "nodemon ./bin/loader",
     "test": "node ./bin/start | mocha"
   },
   "dependencies": {

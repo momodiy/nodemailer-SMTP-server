@@ -48,5 +48,4 @@ if (process.platform === 'wind32') {
 }
 child_process.exec(`${cmd} "${url}"`);
 
-
 module.exports = app;

@@ -24,13 +24,12 @@ router.post('/send', (req, res, next) => {
         subject: req.body.subject,
         text: req.body.message,
         // 当存在html，text会被替换且不显示
-        // html: '<h1>你好，这是一封来自Steven Lee的邮件！仅供测试</h1><p></p>', //content
+        // html: '<h1>你好，这是一封来自Steven Lee的邮件！仅供测试</h1><p></p>',
         // attachments: []//附件
     };
 
     mailTransport.sendMail(options, function (err, msg) {
         if (err) {
-            console.log(err);
             res.status(500).render('error', {
                 title: err.response, error: {
                     status: err.responseCode,

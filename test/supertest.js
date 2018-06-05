@@ -20,7 +20,7 @@ describe('Basic function test', () => {
                 if (err) throw err;
                 res.status.should.equals(200);
                 res.request.host.should.equals('localhost:8888');
-                res.headers['content-length'].should.equals('5888');
+                res.headers['content-length'].should.equals('5760');
                 done();
             });
     });
@@ -82,7 +82,6 @@ describe('Error handle test', () => {
             .expect(500)
             .end((err, res) => {
                 if (err) throw err;
-                console.log(res);
                 res.charset.should.equals('utf-8');
                 res.status.should.equals(500);
                 res.serverError.should.equals(true);
