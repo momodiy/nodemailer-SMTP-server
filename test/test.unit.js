@@ -7,13 +7,13 @@
 let request = require('supertest');
 let should = require('should');
 let recipientEmail = 'qcstevengo@gmail.com';
-let os=require('os');
+let os = require('os');
 // console.log(os.networkInterfaces().eth0[0].address);
 
 describe('Basic function test', function () {
     this.timeout(30000);
     it('should no error to get the home gage', done => {
-        request('http://'+getIPAdress()+':8888')
+        request('http://' + getIPAdress() + ':8888')
             .get('/')
             .set('Accept', 'application/json')
             .expect('Content-Type', 'text/html; charset=UTF-8')
@@ -21,14 +21,14 @@ describe('Basic function test', function () {
             .end((err, res) => {
                 if (err) throw err;
                 res.status.should.equals(200);
-                res.request.host.should.equals(getIPAdress()+':8888');
+                res.request.host.should.equals(getIPAdress() + ':8888');
                 done();
             });
     });
 
     it('should no error to send an email', done => {
 
-        request('http://'+getIPAdress()+':8888')
+        request('http://' + getIPAdress() + ':8888')
             .post('/send')
             .send({
                 email: recipientEmail,
@@ -43,7 +43,7 @@ describe('Basic function test', function () {
                 console.log(res);
                 res.charset.should.equals('utf-8');
                 res.status.should.equals(200);
-                res.request.host.should.equals('localhost:8888');
+                res.request.host.should.equals(getIPAdress() + ':8888');
                 res.body.type.should.equals('success');
                 res.body.msg.should.equals(`邮件已经发送至：${recipientEmail}`);
                 done();
@@ -54,7 +54,7 @@ describe('Basic function test', function () {
 describe('Error handle test', function () {
     this.timeout(30000);
     it('should get error to send email use error server email', done => {
-        request('http://'+getIPAdress()+':8888')
+        request('http://' + getIPAdress() + ':8888')
             .post('/send')
             .send({
                 email: 'qcstevengo@gmail.com',
@@ -75,7 +75,7 @@ describe('Error handle test', function () {
     });
 
     it('should get error to send email missing parameters', done => {
-        request('http://'+getIPAdress()+':8888')
+        request('http://' + getIPAdress() + ':8888')
             .post('/send')
             .send({
                 email: 'qcstevengo@gmail.com',
@@ -95,7 +95,7 @@ describe('Error handle test', function () {
     });
 
     it('should get 404 to access invalid route', done => {
-        request('http://'+getIPAdress()+':8888')
+        request('http://' + getIPAdress() + ':8888')
             .get('/invalidRoute')
             .set('Accept', 'application/json')
             .expect('Content-Type', 'text/html; charset=utf-8')
@@ -108,13 +108,13 @@ describe('Error handle test', function () {
     });
 });
 
-const getIPAdress=()=>{
+const getIPAdress = () => {
     let interfaces = require('os').networkInterfaces();
-    for(let devName in interfaces){
+    for (let devName in interfaces) {
         let iface = interfaces[devName];
-        for(let i=0;i<iface.length;i++){
+        for (let i = 0; i < iface.length; i++) {
             let alias = iface[i];
-            if(alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal){
+            if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
                 return alias.address;
             }
         }
