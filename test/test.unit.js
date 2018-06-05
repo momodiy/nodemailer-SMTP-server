@@ -7,6 +7,8 @@
 let request = require('supertest');
 let should = require('should');
 let recipientEmail = 'qcstevengo@gmail.com';
+let os=require('os');
+// console.log(os.networkInterfaces().eth0[0].address);
 
 describe('Basic function test', function () {
     this.timeout(30000);
@@ -19,7 +21,7 @@ describe('Basic function test', function () {
             .end((err, res) => {
                 if (err) throw err;
                 res.status.should.equals(200);
-                res.request.host.should.equals('localhost:8888');
+                res.request.host.should.equals(getIPAdress()+':8888');
                 done();
             });
     });
@@ -38,6 +40,7 @@ describe('Basic function test', function () {
             .expect(200)
             .end((err, res) => {
                 if (err) throw err;
+                console.log(res);
                 res.charset.should.equals('utf-8');
                 res.status.should.equals(200);
                 res.request.host.should.equals('localhost:8888');
