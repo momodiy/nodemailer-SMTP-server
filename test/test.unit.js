@@ -9,9 +9,9 @@ let should = require('should');
 let recipientEmail = 'qcstevengo@gmail.com';
 
 describe('Basic function test', function () {
-    this.timeout(8000);
+    this.timeout(30000);
     it('should no error to get the home gage', done => {
-        request('http://localhost:8888')
+        request('http://'+getIPAdress()+':8888')
             .get('/')
             .set('Accept', 'application/json')
             .expect('Content-Type', 'text/html; charset=UTF-8')
@@ -26,7 +26,7 @@ describe('Basic function test', function () {
 
     it('should no error to send an email', done => {
 
-        request('http://localhost:8888')
+        request('http://'+getIPAdress()+':8888')
             .post('/send')
             .send({
                 email: recipientEmail,
@@ -49,9 +49,9 @@ describe('Basic function test', function () {
 });
 
 describe('Error handle test', function () {
-    this.timeout(8000);
+    this.timeout(30000);
     it('should get error to send email use error server email', done => {
-        request('http://localhost:8888')
+        request('http://'+getIPAdress()+':8888')
             .post('/send')
             .send({
                 email: 'qcstevengo@gmail.com',
@@ -72,7 +72,7 @@ describe('Error handle test', function () {
     });
 
     it('should get error to send email missing parameters', done => {
-        request('http://localhost:8888')
+        request('http://'+getIPAdress()+':8888')
             .post('/send')
             .send({
                 email: 'qcstevengo@gmail.com',
@@ -92,7 +92,7 @@ describe('Error handle test', function () {
     });
 
     it('should get 404 to access invalid route', done => {
-        request('http://localhost:8888')
+        request('http://'+getIPAdress()+':8888')
             .get('/invalidRoute')
             .set('Accept', 'application/json')
             .expect('Content-Type', 'text/html; charset=utf-8')
@@ -104,3 +104,16 @@ describe('Error handle test', function () {
             });
     });
 });
+
+const getIPAdress=()=>{
+    let interfaces = require('os').networkInterfaces();
+    for(let devName in interfaces){
+        let iface = interfaces[devName];
+        for(let i=0;i<iface.length;i++){
+            let alias = iface[i];
+            if(alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal){
+                return alias.address;
+            }
+        }
+    }
+}
