@@ -8,11 +8,8 @@ let request = require('supertest');
 let should = require('should');
 let recipientEmail = 'qcstevengo@gmail.com';
 
-beforeEach(function(){
+describe('Basic function test', function () {
     this.timeout(8000);
-})
-
-describe('Basic function test', () => {
     it('should no error to get the home gage', done => {
         request('http://localhost:8888')
             .get('/')
@@ -28,6 +25,7 @@ describe('Basic function test', () => {
     });
 
     it('should no error to send an email', done => {
+
         request('http://localhost:8888')
             .post('/send')
             .send({
@@ -50,7 +48,8 @@ describe('Basic function test', () => {
     });
 });
 
-describe('Error handle test', () => {
+describe('Error handle test', function () {
+    this.timeout(8000);
     it('should get error to send email use error server email', done => {
         request('http://localhost:8888')
             .post('/send')
