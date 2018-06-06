@@ -1,3 +1,7 @@
 {
-  "extends": "standard"
+  "extends": "standard",
+  "rules": {
+    "no-console": 1,
+    "no-alert": 2
+  }
 }
