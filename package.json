@@ -46,5 +46,14 @@
   },
   "peerDependencies": {
     "eslint": ">= 3"
-  }
+  },
+  "keywords": [
+    "nodemailer",
+    "email server",
+    "express",
+    "mocha",
+    "shouldjs",
+    "eslint",
+    "travisCI"
+  ]
 }
