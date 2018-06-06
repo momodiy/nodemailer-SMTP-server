@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node ./bin/start",
     "monitor": "nodemon ./bin/loader",
-    "test": "node ./bin/start | mocha",
+    "test": "node ./bin/start | mocha | ",
     "eslint": "./node_modules/.bin/eslint */*.js | ./node_modules/.bin/eslint app.js"
   },
   "dependencies": {
