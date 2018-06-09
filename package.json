@@ -5,16 +5,17 @@
   "email": "qcstevengo@gmail.com",
   "private": true,
   "license": "MIT",
-  "main": "start.js",
+  "main": "bin/start.js",
   "scripts": {
     "start": "node ./bin/start",
-    "monitor": "nodemon ./bin/loader",
-    "test": "node ./bin/start | mocha | ",
+    "monitor": "nodemon ./bin/start",
+    "test": "node ./bin/start | mocha",
     "eslint": "./node_modules/.bin/eslint */*.js | ./node_modules/.bin/eslint app.js"
   },
   "dependencies": {
     "chai": "^4.1.2",
     "child_process": "^1.0.2",
+    "chrome": "^0.1.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "^2.6.1",
