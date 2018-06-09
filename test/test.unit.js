@@ -7,6 +7,7 @@
 /* eslint-env mocha */
 let request = require('supertest')
 let should = require('should')
+let start = require('../bin/start')
 let recipientEmail = 'qcstevengo@gmail.com'
 
 describe('Basic function test', function () {
@@ -104,7 +105,10 @@ describe('Error handle test', function () {
         })
   })
 
-  it('should no error to shutdown the process', done => done() && process.exit())
+  it('should no error to shutdown the process', done => {
+    console.log(start.close());
+    done()
+  })
 })
 
 const getIPAdress = () => {
