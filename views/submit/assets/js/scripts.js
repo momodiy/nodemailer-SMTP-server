@@ -54,7 +54,7 @@ jQuery(document).ready(() => {
                 isReSub = false;
             },
             success: res => {
-                if (res.type === 'success' && res.state === 200 && res.msg !== '') {
+                if (res.type === 'success' && res.status === 200 && res.msg !== '') {
                     $('.form-top-right>.fa-envelope').css({'color': '#5b9e11'});
                     $('.contact-form form').fadeOut('fast', () => {
                         $('.form-top-left>h3').html(`<p>Congratulations</p>`);

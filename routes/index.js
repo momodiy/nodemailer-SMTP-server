@@ -42,6 +42,7 @@ router.post('/send', (req, res, next) => {
         msg: '邮件已经发送至：' + msg.accepted,
         title: '邮件发送成功',
         type: 'success',
+        status: 200,
         data: new Date()
       }).end()
     }
