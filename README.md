@@ -1,5 +1,8 @@
 # **express邮件服务器**
-
+<p>
+<a href="https://travis-ci.org/momodiy/nodemailer-SMTP-server">
+<img src="https://api.travis-ci.org/momodiy/nodemailer-SMTP-server.svg?branch=master" alt="Build Status"></a>
+</p>
 ## 目录  
 * [项目介绍](#项目介绍)  
 * [使用说明](#使用说明)
