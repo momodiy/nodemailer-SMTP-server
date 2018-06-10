@@ -46,6 +46,6 @@ if (process.platform === 'wind32') {
 } else if (process.platform === 'darwin') {
   cmd = 'open'
 }
-`!process.isTestEnv && childProcess.exec(`${cmd} "${url}"`)
+!process.isTestEnv && childProcess.exec(`${cmd} "${url}"`)
 
 module.exports = app
