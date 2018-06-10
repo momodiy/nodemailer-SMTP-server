@@ -10,7 +10,7 @@
     "start": "node ./bin/start",
     "monitor": "nodemon ./bin/start",
     "test": "mocha",
-    "eslint": "./node_modules/.bin/eslint */*.js | ./node_modules/.bin/eslint app.js"
+    "eslint": "./node_modules/.bin/eslint */*.js & ./node_modules/.bin/eslint app.js"
   },
   "dependencies": {
     "chai": "^4.1.2",

@@ -37,8 +37,8 @@ const onError = error => {
   }
 
   let bind = typeof port === 'string'
-      ? 'Pipe ' + port
-      : 'Port ' + port
+    ? 'Pipe ' + port
+    : 'Port ' + port
 
   // handle specific listen errors with friendly messages
   /* eslint no-console: ["warn", { allow: ["error"] }] */
@@ -60,8 +60,8 @@ const onError = error => {
 const onListening = () => {
   let addr = server.address()
   let bind = typeof addr === 'string'
-      ? 'pipe ' + addr
-      : 'port ' + addr.port
+    ? 'pipe ' + addr
+    : 'port ' + addr.port
   debug('Listening on ' + bind)
 }
 
@@ -81,8 +81,7 @@ let server = http.createServer(app)
 /**
  * Listen on provided port, on all network interfaces.
  */
-
 server.listen(port)
 server.on('error', onError)
 server.on('listening', onListening)
-exports = module.exports = server;
+exports = module.exports = server
