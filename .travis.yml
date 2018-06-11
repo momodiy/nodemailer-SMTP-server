@@ -4,3 +4,4 @@ node_js:
 scripts: {
   "test": "vows --spec"
 }
+after_success: nyc report --reporter=text-lcov | coveralls
