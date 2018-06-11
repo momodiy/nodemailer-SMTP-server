@@ -14,15 +14,9 @@ let http = require('http')
 const normalizePort = val => {
   let port = parseInt(val, 10)
 
-  if (isNaN(port)) {
-    // named pipe
-    return val
-  }
+  if (isNaN(port)) return val // named pipe
 
-  if (port >= 0) {
-    // port number
-    return port
-  }
+  if (port >= 0) return port // port number
 
   return false
 }
@@ -32,9 +26,7 @@ const normalizePort = val => {
  */
 
 const onError = error => {
-  if (error.syscall !== 'listen') {
-    throw error
-  }
+  if (error.syscall !== 'listen') throw error
 
   let bind = typeof port === 'string'
     ? 'Pipe ' + port
