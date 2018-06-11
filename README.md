@@ -3,6 +3,8 @@
 <p>
 <a href="https://travis-ci.org/momodiy/nodemailer-SMTP-server">
 <img src="https://api.travis-ci.org/momodiy/nodemailer-SMTP-server.svg?branch=master" alt="Build Status"></a>
+
+[![Coverage Status](https://coveralls.io/repos/github/momodiy/nodemailer-SMTP-server/badge.svg?branch=master)](https://coveralls.io/github/momodiy/nodemailer-SMTP-server?branch=master)
 </p>
 
 ## 目录  
