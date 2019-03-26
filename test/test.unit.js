@@ -14,7 +14,7 @@ let recipientEmail = 'qcstevengo@gmail.com'
 describe('Basic function test', function () {
   this.timeout(50000)
   it('should no error to get the home page', done => {
-    request('http://' + getIPAdress() + ':8888')
+    request('http://' + getIPAddress() + ':8888')
       .get('/')
       .set('Accept', 'application/json')
       .expect('Content-Type', 'text/html; charset=UTF-8')
@@ -22,13 +22,13 @@ describe('Basic function test', function () {
       .end((err, res) => {
         if (err) throw err
         res.status.should.equals(200)
-        res.request.host.should.equals(getIPAdress() + ':8888')
+        res.request.host.should.equals(getIPAddress() + ':8888')
         done()
       })
   })
 
   it('should no error to send an email', done => {
-    request('http://' + getIPAdress() + ':8888')
+    request('http://' + getIPAddress() + ':8888')
       .post('/send')
       .send({
         email: recipientEmail,
@@ -42,7 +42,7 @@ describe('Basic function test', function () {
         if (err) throw err
         res.charset.should.equals('utf-8')
         res.status.should.equals(200)
-        res.request.host.should.equals(getIPAdress() + ':8888')
+        res.request.host.should.equals(getIPAddress() + ':8888')
         res.body.type.should.equals('success')
         res.body.msg.should.equals(`邮件已经发送至：${recipientEmail}`)
         done()
@@ -55,7 +55,7 @@ describe('Error handle test', function () {
 
   after(() => start.close())
   it('should get error to send email use error server email', done => {
-    request('http://' + getIPAdress() + ':8888')
+    request('http://' + getIPAddress() + ':8888')
       .post('/send')
       .send({
         email: 'qcstevengo@gmail.com',
@@ -76,7 +76,7 @@ describe('Error handle test', function () {
   })
 
   it('should get error to send email missing parameters', done => {
-    request('http://' + getIPAdress() + ':8888')
+    request('http://' + getIPAddress() + ':8888')
       .post('/send')
       .send({
         email: 'qcstevengo@gmail.com',
@@ -96,7 +96,7 @@ describe('Error handle test', function () {
   })
 
   it('should get 404 to access invalid route', done => {
-    request('http://' + getIPAdress() + ':8888')
+    request('http://' + getIPAddress() + ':8888')
       .get('/invalidRoute')
       .set('Accept', 'application/json')
       .expect('Content-Type', 'text/html; charset=utf-8')
@@ -109,7 +109,7 @@ describe('Error handle test', function () {
   })
 })
 
-const getIPAdress = () => {
+const getIPAddress = () => {
   let interfaces = require('os').networkInterfaces()
   for (let devName in interfaces) {
     let iface = interfaces[devName]
