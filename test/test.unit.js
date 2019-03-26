@@ -40,6 +40,7 @@ describe('Basic function test', function () {
       .expect(200)
       .end((err, res) => {
         if (err) throw err
+        console.log(res)
         res.charset.should.equals('utf-8')
         res.status.should.equals(200)
         res.request.host.should.equals(getIPAddress() + ':8888')
