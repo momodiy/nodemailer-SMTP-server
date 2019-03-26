@@ -13,7 +13,7 @@ let recipientEmail = 'qcstevengo@gmail.com'
 
 describe('Basic function test', function () {
   this.timeout(30000)
-  it('should no error to get the home gage', done => {
+  it('should no error to get the home page', done => {
     request('http://' + getIPAdress() + ':8888')
       .get('/')
       .set('Accept', 'application/json')
