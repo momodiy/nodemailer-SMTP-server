@@ -12,7 +12,7 @@ let start = require('../bin/start')
 let recipientEmail = 'qcstevengo@gmail.com'
 
 describe('Basic function test', function () {
-  this.timeout(30000)
+  this.timeout(50000)
   it('should no error to get the home page', done => {
     request('http://' + getIPAdress() + ':8888')
       .get('/')
@@ -51,7 +51,7 @@ describe('Basic function test', function () {
 })
 
 describe('Error handle test', function () {
-  this.timeout(30000)
+  this.timeout(50000)
 
   after(() => start.close())
   it('should get error to send email use error server email', done => {
