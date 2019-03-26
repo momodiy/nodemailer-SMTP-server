@@ -14,8 +14,10 @@ let http = require('http')
 const normalizePort = val => {
   let port = parseInt(val, 10)
 
+  /* istanbul ignore if */
   if (isNaN(port)) return val // named pipe
 
+  /* istanbul ignore if */
   if (port >= 0) return port // port number
 
   return false
@@ -26,14 +28,16 @@ const normalizePort = val => {
  */
 
 const onError = error => {
+  /* istanbul ignore if */
   if (error.syscall !== 'listen') throw error
 
   let bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port
+    /* istanbul ignore next */ ? 'Pipe ' + port
+    /* istanbul ignore next */ : 'Port ' + port
 
   // handle specific listen errors with friendly messages
   /* eslint no-console: ["warn", { allow: ["error"] }] */
+  /* istanbul ignore if */
   if (error.code === 'EACCES') {
     console.error(bind + ' requires elevated privileges')
     process.exit(1)
