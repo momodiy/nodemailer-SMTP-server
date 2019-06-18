@@ -6,11 +6,11 @@
 let app = require('../app')
 let debug = require('debug')('express-email-server:server')
 let http = require('http')
+let cp = require('child_process')
 
 /**
  * Normalize a port into a number, string, or false.
  */
-
 const normalizePort = val => {
   let port = parseInt(val, 10)
 
@@ -34,6 +34,7 @@ const onError = error => {
   let bind = typeof port === 'string'
     /* istanbul ignore next */ ? 'Pipe ' + port
     /* istanbul ignore next */ : 'Port ' + port
+  console.log(bind)
 
   // handle specific listen errors with friendly messages
   /* eslint no-console: ["warn", { allow: ["error"] }] */
@@ -72,12 +73,15 @@ app.set('port', port)
  * Create HTTP server.
  */
 
+// let server = http.createServer(app)
 let server = http.createServer(app)
-
+console.log(server)
 /**
  * Listen on provided port, on all network interfaces.
  */
 server.listen(port)
 server.on('error', onError)
 server.on('listening', onListening)
+
+cp.exec('start http://localhost:8888')
 exports = module.exports = server

@@ -6,13 +6,27 @@
 
 /* eslint-env mocha */
 let request = require('supertest')
-let should = require('should')
+require('should')
 process.isTestEnv = true
 let start = require('../bin/start')
 let recipientEmail = 'qcstevengo@gmail.com'
 
+const getIPAddress = () => {
+  let interfaces = require('os').networkInterfaces()
+  for (let devName in interfaces) {
+    let iface = interfaces[devName]
+    for (let i = 0; i < iface.length; i++) {
+      let alias = iface[i]
+      if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+        return alias.address
+      }
+    }
+  }
+}
+
 describe('Basic function test', function () {
   this.timeout(50000)
+  console.log(getIPAddress())
   it('should no error to get the home page', done => {
     request('http://' + getIPAddress() + ':8888')
       .get('/')
@@ -40,7 +54,6 @@ describe('Basic function test', function () {
       .expect(200)
       .end((err, res) => {
         if (err) throw err
-        console.log(res)
         res.charset.should.equals('utf-8')
         res.status.should.equals(200)
         res.request.host.should.equals(getIPAddress() + ':8888')
@@ -110,15 +123,4 @@ describe('Error handle test', function () {
   })
 })
 
-const getIPAddress = () => {
-  let interfaces = require('os').networkInterfaces()
-  for (let devName in interfaces) {
-    let iface = interfaces[devName]
-    for (let i = 0; i < iface.length; i++) {
-      let alias = iface[i]
-      if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
-        return alias.address
-      }
-    }
-  }
-}
+
