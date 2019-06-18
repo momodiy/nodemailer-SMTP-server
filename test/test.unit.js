@@ -54,6 +54,7 @@ describe('Basic function test', function () {
       // .expect('Content-Type', 'application/json; charset=utf-8')
       .expect(200)
       .end((err, res) => {
+        console.log('request success')
         if (err) throw err
         res.charset.should.equals('utf-8')
         res.status.should.equals(200)
