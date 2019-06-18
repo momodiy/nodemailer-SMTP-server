@@ -43,7 +43,7 @@ describe('Basic function test', function () {
 
   it('should no error to send an email', done => {
     console.log(getIPAddress());
-    request('http://' + getIPAddress() + ':8888')
+    request('http://localhost:8888')
       .post('/send')
       .send({
         email: recipientEmail,
