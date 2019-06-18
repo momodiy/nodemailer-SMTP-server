@@ -9,7 +9,7 @@ let request = require('supertest')
 require('should')
 process.isTestEnv = true
 let start = require('../bin/start')
-let recipientEmail = 'qcstevengo@gmail.com'
+let recipientEmail = 'qcjy16@126.com'
 
 const getIPAddress = () => {
   let interfaces = require('os').networkInterfaces()
@@ -42,6 +42,7 @@ describe('Basic function test', function () {
   })
 
   it('should no error to send an email', done => {
+    console.log(getIPAddress());
     request('http://' + getIPAddress() + ':8888')
       .post('/send')
       .send({

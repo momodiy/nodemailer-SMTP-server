@@ -67,7 +67,6 @@ const onListening = () => {
  */
 
 let port = normalizePort(process.env.PORT || '8888')
-app.set('port', port)
 
 /**
  * Create HTTP server.
@@ -75,7 +74,6 @@ app.set('port', port)
 
 // let server = http.createServer(app)
 let server = http.createServer(app)
-console.log(server)
 /**
  * Listen on provided port, on all network interfaces.
  */
