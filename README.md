@@ -1,8 +1,6 @@
 # **express邮件服务器**
 
 <p>
-<a href="https://travis-ci.org/momodiy/nodemailer-SMTP-server">
-<img src="https://api.travis-ci.org/momodiy/nodemailer-SMTP-server.svg?branch=master" alt="Build Status"></a>
 
 <a href="https://coveralls.io/github/momodiy/nodemailer-SMTP-server?branch=master">
 <img src="https://coveralls.io/repos/github/momodiy/nodemailer-SMTP-server/badge.svg?branch=master" alt="Coverage Status"></a>
